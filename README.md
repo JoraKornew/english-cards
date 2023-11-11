@@ -1,3 +1,1 @@
-# Flash cards to learn English.
-
-test test test
+# Flash cards.

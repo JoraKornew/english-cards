@@ -10,10 +10,12 @@
 		<div id="init">
 			<select id="parts" style="font-size: x-large;">
 				<option value="Eg-Base-1-5.json">Eg Base parts 1-5</option>
+				<option value="Eg-Base-6-14.json">Eg Base parts 6-14</option>
+				<option value="Eg-Base-15-23.json">Eg Base parts 15-23</option>
 			</select>
 			<input type="number" id="inCount" style="font-size: x-large;"><br>
-			<button id="startBtn" style="font-size: x-large;">start</button>
-			<button id="resetBtn" style="font-size: x-large;">reset</button>
+			<button id="startBtn" style="font-size: x-large; margin: 5px;">start</button>
+			<button id="resetBtn" style="font-size: x-large; margin: 5px;">reset</button>
 			<hr>
 			<div>
 				stats
@@ -26,7 +28,7 @@
 		</div>
 
 		<div id="learn"  style="font-size: x-large;">
-			<div id="info"></div>
+			<div id="info"></div>		
 			<hr>
 			<h3 style="text-align: center;">question</h3>
 			<div id="question"></div>
@@ -76,7 +78,7 @@ document.getElementById("startBtn").addEventListener("click", ()=> {
 
 // Select Part Event
 document.getElementById("parts").addEventListener("change", ()=> {
-	console.log("clickssss!")
+	refreshStats()
 })
 
 // Input Events
@@ -92,11 +94,21 @@ document.getElementById("answer").addEventListener("keyup", (event)=>{
 	}
 })
 
+// Reset Event
+ document.getElementById("resetBtn").addEventListener("click", ()=>{
+	 if(document.getElementById("resetBtn").innerText == "reset") {
+		 document.getElementById("resetBtn").innerText = "rly clear all data?"
+	} else {
+		document.getElementById("resetBtn").innerText = "reset"
+		localStorage.clear()
+		loopMap = [[3,6,6,0],[],[],[],[],[],[],[],[],[],[]]
+		init()
+	}
+ })
 
-			 
 
 function load(){
-	console.log(loopMap)
+	//console.log(loopMap)
 	let counter = loopMap[0][3]
 	let i = loopMap[0][2]
 	while (loopMap[i].length == 0) {
@@ -105,7 +117,7 @@ function load(){
 		if(i==2) {loopMap[0][2] = 1}
 		if(i==1) {
 			if (loopMap[i].length==0)  {
-				console.log("round end")
+				//console.log("round end")
 				loopMap[0][1]==10 ? loopMap[0][1] = 6 : loopMap[0][1]++
 				loopMap[0][0]==5 ? loopMap[0][0] = 3 : loopMap[0][0]++
 				loopMap[0][2] = loopMap[0][1]
@@ -134,7 +146,6 @@ function check(){
 
 	document.getElementById("youAnswer").innerText= document.getElementById("answer").value 
 	document.getElementById("answer").value = ""
-
 }
 
 function refreshStats(){
@@ -185,7 +196,7 @@ function start(){
 		}
 	}
 
-	console.log(freeList.length)
+//	console.log(freeList.length)
 
 	if(freeList.length < roundCount)  {
 		roundCount = freeList.length
