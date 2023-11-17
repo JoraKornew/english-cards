@@ -17,7 +17,8 @@
 			</select>
 			<input type="number" id="inCount" style="font-size: x-large;"><br>
 			<button id="startBtn" style="font-size: x-large; margin: 5px;">start</button>
-			<button id="resetBtn" style="font-size: x-large; margin: 5px;">reset</button>
+			<button id="resetCurBtn" style="font-size: x-large; margin: 5px;">reset</button>
+			<button id="resetBtn" style="font-size: x-large; margin: 5px;">reset All</button>
 			<hr>
 			<div>
 				stats
@@ -97,11 +98,24 @@ document.getElementById("answer").addEventListener("keyup", (event)=>{
 })
 
 // Reset Event
+ document.getElementById("resetCurBtn").addEventListener("click", ()=>{
+	 if(document.getElementById("resetCurBtn").innerText == "reset") {
+		 document.getElementById("resetCurBtn").innerText = "rly clear curent data?"
+	} else {
+		document.getElementById("resetCurBtn").innerText = "reset"
+		loopMap = [[3,6,6,0],[],[],[],[],[],[],[],[],[],[]]
+		localStorage.setItem(`${document.getElementById("parts").value}`,JSON.stringify(loopMap))
+		init()
+	}
+ })
+
+
+// Reset All Event
  document.getElementById("resetBtn").addEventListener("click", ()=>{
-	 if(document.getElementById("resetBtn").innerText == "reset") {
+	 if(document.getElementById("resetBtn").innerText == "reset All") {
 		 document.getElementById("resetBtn").innerText = "rly clear all data?"
 	} else {
-		document.getElementById("resetBtn").innerText = "reset"
+		document.getElementById("resetBtn").innerText = "reset All"
 		localStorage.clear()
 		loopMap = [[3,6,6,0],[],[],[],[],[],[],[],[],[],[]]
 		init()
