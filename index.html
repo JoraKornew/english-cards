@@ -23,12 +23,12 @@
 			<button id="resetCurBtn" style="font-size: x-large; margin: 5px;">reset</button>
 			<button id="resetBtn" style="font-size: x-large; margin: 5px;">reset All</button>
 			<hr>
-			<div>
+			<div id="statsBlock" >
 				stats
 				<ul style="font-size: x-large;">
 					<li>lvl a count <span id="aStats"> </span> </li>
 					<li>lvl b count <span id="bStats"> </span> </li>
-					<li>lvl zero count <span id="zStats"> </span> </li>
+					<li id="zStatsLine">lvl zero count <span id="zStats"> </span> </li>
 				</ul>
 			</div>
 		</div>
@@ -168,14 +168,27 @@ function check(){
 }
 
 function refreshStats(){
+const aSum = loopMap[3].length + loopMap[4].length + loopMap[5].length
+const bSum = loopMap[6].length + loopMap[7].length + loopMap[8].length + loopMap[9].length + loopMap[10].length
 	if(localStorage.hasOwnProperty(`${document.getElementById("parts").value}`)){
 		loopMap = JSON.parse(localStorage.getItem(`${document.getElementById("parts").value}`))
 	} else {
 		localStorage.setItem(`${document.getElementById("parts").value}`,JSON.stringify(loopMap))
 	}
 
-	document.getElementById("aStats").innerText=(loopMap[3].length + loopMap[4].length + loopMap[5].length)
-	document.getElementById("bStats").innerText=(loopMap[6].length + loopMap[7].length + loopMap[8].length + loopMap[9].length + loopMap[10].length)
+	document.getElementById("aStats").innerText=(aSum)
+	document.getElementById("bStats").innerText=(bSum)
+	if( (aSum + bSum) <= 5){
+	document.getElementById("statsBlock").setAttribute("style", "background: greenyellow")
+	} else {
+	document.getElementById("statsBlock").setAttribute("style", "background: floralwhite")
+	}
+
+	if(loopMap[2].length == 0){
+	document.getElementById("zStatsLine").setAttribute("style", "background: greenyellow")
+	} else {
+	document.getElementById("zStatsLine").setAttribute("style", "background: floralwhite")
+	}
 	document.getElementById("zStats").innerText=(loopMap[2].length)
 }
 
