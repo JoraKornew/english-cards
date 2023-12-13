@@ -168,8 +168,8 @@ function check(){
 }
 
 function refreshStats(){
-	const aSum = 0
-	const bSum = 0
+	let aSum = 0
+	let bSum = 0
 	if(localStorage.hasOwnProperty(`${document.getElementById("parts").value}`)){
 		loopMap = JSON.parse(localStorage.getItem(`${document.getElementById("parts").value}`))
 	} else {
