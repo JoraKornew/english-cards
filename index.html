@@ -168,14 +168,17 @@ function check(){
 }
 
 function refreshStats(){
-const aSum = loopMap[3].length + loopMap[4].length + loopMap[5].length
-const bSum = loopMap[6].length + loopMap[7].length + loopMap[8].length + loopMap[9].length + loopMap[10].length
+	const aSum = 0
+	const bSum = 0
 	if(localStorage.hasOwnProperty(`${document.getElementById("parts").value}`)){
 		loopMap = JSON.parse(localStorage.getItem(`${document.getElementById("parts").value}`))
 	} else {
+		loopMap = [[3,6,6,0],[],[],[],[],[],[],[],[],[],[]]
 		localStorage.setItem(`${document.getElementById("parts").value}`,JSON.stringify(loopMap))
 	}
 
+	aSum = loopMap[3].length + loopMap[4].length + loopMap[5].length
+	bSum = loopMap[6].length + loopMap[7].length + loopMap[8].length + loopMap[9].length + loopMap[10].length
 	document.getElementById("aStats").innerText=(aSum)
 	document.getElementById("bStats").innerText=(bSum)
 	if( (aSum + bSum) <= 5){
