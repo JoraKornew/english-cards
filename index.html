@@ -148,10 +148,10 @@ function load(){
 		}
 		i = loopMap[0][2]
 	} 
-	if(i>5){document.getElementById("info").innerText = `b part: ${loopMap[i].length}`}
-	if(i>2 && i<6) {document.getElementById("info").innerText = `a part: ${loopMap[i].length}`} 
-	if(i==2) {document.getElementById("info").innerText = `zero part: ${loopMap[i].length}`}
-	if(i==1) {document.getElementById("info").innerText = `new part: ${loopMap[i].length}`}
+	if(i>5){document.getElementById("info").innerText = `b part: ${loopMap[i].length} | ${document.getElementById("parts").value}`}
+	if(i>2 && i<6) {document.getElementById("info").innerText = `a part: ${loopMap[i].length} | ${document.getElementById("parts").value}`} 
+	if(i==2) {document.getElementById("info").innerText = `zero part: ${loopMap[i].length} | ${document.getElementById("parts").value}`}
+	if(i==1) {document.getElementById("info").innerText = `new part: ${loopMap[i].length} | ${document.getElementById("parts").value}`}
 
 	document.getElementById("question").innerText=part[loopMap[i][counter]][1]
 	document.getElementById("ranswer").innerText=""
