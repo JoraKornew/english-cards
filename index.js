@@ -113,7 +113,11 @@ function load(){
 function check(){
   let i = loopMap[0][2]
   let counter = loopMap[0][3]
+  var refEnd = part[loopMap[i][counter]][0].split(' ')
+
   document.getElementById("ranswer").innerText=part[loopMap[i][counter]][0]
+
+  document.getElementById("cambDic").setAttribute("href", `https://dictionary.cambridge.org/dictionary/english-russian/${refEnd[0]}`)
 
   document.getElementById("youAnswer").innerText= document.getElementById("answer").value 
   document.getElementById("answer").value = ""
